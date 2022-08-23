@@ -3,11 +3,16 @@ resource "aws_s3_bucket" "b" {
 
   tags = {
     Name        = "terramate test"
-    Environment = "Dev"
+    Environment = var.env
   }
 }
 
 resource "aws_s3_bucket_acl" "example" {
   bucket = aws_s3_bucket.b.id
   acl    = "private"
+}
+
+variable "env" {
+  type = string
+  default = "DEV"
 }
